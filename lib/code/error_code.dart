@@ -314,7 +314,7 @@ const specMap = [
   ('8.8.5', '4.10', 'Time to Live Expired'),
   ('8.8.5', '6.4', 'Maximum number of attempts of Profile Download has been exceeded (Maximum number of retries for Profile download order exceeded)'),
   ('8.2.7', '6.4', 'Maximum number of incorrect attempts of Confirmation Code verification has been exceeded'),
-  ('8.10.2.7', '4.2', 'Execution of at least one RPM command within an RPM package has failed'),
+  ('8.10.2', '4.2', 'Execution of at least one RPM command within an RPM package has failed'),
 
   ('8.8.1', '3.8', 'Failed due to Invalid Server Address'),
   ('8.8.2', '3.1', 'Failed due to Unsupported Public Key Identifiers'),

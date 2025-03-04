@@ -60,7 +60,15 @@ class SubjectReasonWidget extends StatelessWidget {
 
 class SubjectReasonDataSource extends DataGridSource {
   SubjectReasonDataSource(this.subjectCode, this.reasonCode) {
-    _subjectData = specMap
+    final list = List.generate(specMap.length, (i) => specMap[i])
+      ..sort((a, b) {
+        final compare = a.$1.compareTo(b.$1);
+        if (compare != 0) {
+          return compare;
+        }
+        return a.$2.compareTo(b.$2);
+      });
+    _subjectData = list
         .map<DataGridRow>(
           (e) => DataGridRow(
             cells: [
@@ -94,17 +102,24 @@ class SubjectReasonDataSource extends DataGridSource {
     final cells = row.getCells();
     var bgColor = Colors.transparent;
     if (cells[0].value == subjectCode && cells[2].value == reasonCode) {
-      bgColor = AppColors.primarySecondary.withValues(alpha: 0.6);
+      bgColor = AppColors.primary.withValues(alpha: 0.3);
     }
     return DataGridRowAdapter(
       cells: row.getCells().map<Widget>((e) {
+        final isCode =
+            e.columnName == 'subjectCode' || e.columnName == 'reasonCode';
+        final isCenter = e.columnName != 'description';
         return Container(
-          alignment: Alignment.centerLeft,
+          alignment: isCenter ? Alignment.center : Alignment.centerLeft,
           color: bgColor,
           padding: const EdgeInsets.all(8.0),
           child: SelectableText(
             e.value.toString(),
-            style: const TextStyle(fontSize: 15),
+            style: TextStyle(
+              fontSize: 16,
+              color: isCode ? AppColors.primary : AppColors.content,
+              fontWeight: isCenter ? FontWeight.bold : FontWeight.w400,
+            ),
           ),
         );
       }).toList(),
