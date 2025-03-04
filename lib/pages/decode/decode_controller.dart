@@ -15,19 +15,22 @@ class DecodeController extends GetxController {
   final subjectCodeController = ScrollController();
   final reasonCodeController = ScrollController();
 
-  late final int? _errorCode;
+  late final int? _code;
   late final ErrorMessages errorMessages;
 
+  bool showMessage = false;
+
   int? operationCode;
-  String? errorCode;
+  int? errorCode;
   String? subjectCode;
   String? reasonCode;
 
   @override
   void onInit() {
     final arguments = Get.parameters['code'];
-    _errorCode = int.tryParse(arguments ?? '0');
-    errorMessages = getErrorMessage(_errorCode ?? 0);
+    showMessage = arguments != null && arguments.isNotEmpty;
+    _code = int.tryParse(arguments ?? '0');
+    errorMessages = getErrorMessage(_code ?? 0);
     super.onInit();
   }
 
@@ -51,18 +54,19 @@ class DecodeController extends GetxController {
     reasonCode =
         errorCodeBundle[EuiccCode.EXTRA_EMBEDDED_SUBSCRIPTION_SMDX_REASON_CODE];
     final errorMessageUtils = DetailedErrorMessageUtils(
-        context: Get.context!,
-        errorCode:
-            errorCodeBundle[EuiccCode.EXTRA_EMBEDDED_SUBSCRIPTION_ERROR_CODE] ??
-                0,
-        operationCode: errorCodeBundle[
-                EuiccCode.EXTRA_EMBEDDED_SUBSCRIPTION_OPERATION_CODE] ??
-            0,
-        reasonCode: errorCodeBundle[
-            EuiccCode.EXTRA_EMBEDDED_SUBSCRIPTION_SMDX_REASON_CODE],
-        subjectCode: errorCodeBundle[
-            EuiccCode.EXTRA_EMBEDDED_SUBSCRIPTION_SMDX_SUBJECT_CODE]);
-    var messages = errorMessageUtils.getErrorMessages();
+      context: Get.context!,
+      errorCode:
+          errorCodeBundle[EuiccCode.EXTRA_EMBEDDED_SUBSCRIPTION_ERROR_CODE] ??
+              0,
+      operationCode: errorCodeBundle[
+              EuiccCode.EXTRA_EMBEDDED_SUBSCRIPTION_OPERATION_CODE] ??
+          0,
+      reasonCode: errorCodeBundle[
+          EuiccCode.EXTRA_EMBEDDED_SUBSCRIPTION_SMDX_REASON_CODE],
+      subjectCode: errorCodeBundle[
+          EuiccCode.EXTRA_EMBEDDED_SUBSCRIPTION_SMDX_SUBJECT_CODE],
+    );
+    final messages = errorMessageUtils.getErrorMessages();
     if (operationCode != null) {
       messages.code += '${S.current.operation_code_text}: $operationCode';
     }

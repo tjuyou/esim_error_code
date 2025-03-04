@@ -77,31 +77,15 @@ class OperationCode {
 
   static const List<(String, int, String)> codeList = [
     ('OPERATION_SYSTEM', 1, 'Internal system error.'),
-    (
-      'OPERATION_SIM_SLOT',
-      2,
-      'SIM slot error. Failed to switch slot, failed to access the physical slot etc.'
-    ),
+    ('OPERATION_SIM_SLOT', 2, 'SIM slot error. Failed to switch slot, failed to access the physical slot etc.'),
     ('OPERATION_EUICC_CARD', 3, 'eUICC card error.'),
     ('OPERATION_SWITCH', 4, 'Generic switching profile error'),
     ('OPERATION_DOWNLOAD', 5, 'Download profile error.'),
     ('OPERATION_METADATA', 6, "Subscription's metadata error"),
-    (
-      'OPERATION_EUICC_GSMA',
-      7,
-      'eUICC returned an error defined in GSMA (SGP.22 v2.2) while running one of the ES10x functions.'
-    ),
-    (
-      'OPERATION_APDU',
-      8,
-      'The exception of failing to execute an APDU command. It can be caused by an error happening on opening the basic or logical channel, or the response of the APDU command isnot success (0x9000).'
-    ),
+    ('OPERATION_EUICC_GSMA', 7, 'eUICC returned an error defined in GSMA (SGP.22 v2.2) while running one of the ES10x functions.'),
+    ('OPERATION_APDU', 8, 'The exception of failing to execute an APDU command. It can be caused by an error happening on opening the basic or logical channel, or the response of the APDU command isnot success (0x9000).'),
     ('OPERATION_SMDX', 9, 'SMDX(SMDP/SMDS) error'),
-    (
-      'OPERATION_SMDX_SUBJECT_REASON_CODE',
-      10,
-      'SubjectCode[5.2.6.1] and ReasonCode[5.2.6.2] error from GSMA (SGP.22 v2.2)'
-    ),
+    ('OPERATION_SMDX_SUBJECT_REASON_CODE', 10, 'SubjectCode[5.2.6.1] and ReasonCode[5.2.6.2] error from GSMA (SGP.22 v2.2)'),
     ('OPERATION_HTTP', 11, 'HTTP error'),
     ('OPERATION_NOTIFICATION', 12, 'Notification error'),
   ];
@@ -171,89 +155,30 @@ class ErrorCode {
   static const int ERROR_INVALID_PORT = 10017;
 
   static const List<(String, int, String)> codeInfoList = [
-    (
-      'ERROR_CARRIER_LOCKED',
-      10000,
-      'Operation such as downloading/switching to another profile failed due to device being carrier locked'
-    ),
-    (
-      'ERROR_INVALID_ACTIVATION_CODE',
-      10001,
-      'The activation code(SGP.22 v2.2 section[4.1]) is invalid.'
-    ),
-    (
-      'ERROR_INVALID_CONFIRMATION_CODE',
-      10002,
-      'The confirmation code(SGP.22 v2.2 section[4.7]) is invalid.'
-    ),
-    (
-      'ERROR_INCOMPATIBLE_CARRIER',
-      10003,
-      "The profile's carrier is incompatible with the LPA."
-    ),
-    (
-      'ERROR_EUICC_INSUFFICIENT_MEMORY',
-      10004,
-      'There is no more space available on the eUICC for new profiles.'
-    ),
-    (
-      'ERROR_TIME_OUT',
-      10005,
-      'Timed out while waiting for an operation to complete. i.e restart, disable, switch reset etc.'
-    ),
-    (
-      'ERROR_EUICC_MISSING',
-      10006,
-      'eUICC is missing or defective on the device.'
-    ),
-    (
-      'ERROR_UNSUPPORTED_VERSION',
-      10007,
-      'The eUICC card(hardware) version is incompatible with the software'
-    ),
+    ('ERROR_CARRIER_LOCKED', 10000, 'Operation such as downloading/switching to another profile failed due to device being carrier locked'),
+    ('ERROR_INVALID_ACTIVATION_CODE', 10001, 'The activation code(SGP.22 v2.2 section[4.1]) is invalid.'),
+    ('ERROR_INVALID_CONFIRMATION_CODE', 10002, 'The confirmation code(SGP.22 v2.2 section[4.7]) is invalid.'),
+    ('ERROR_INCOMPATIBLE_CARRIER', 10003, "The profile's carrier is incompatible with the LPA."),
+    ('ERROR_EUICC_INSUFFICIENT_MEMORY', 10004, 'There is no more space available on the eUICC for new profiles.'),
+    ('ERROR_TIME_OUT', 10005, 'Timed out while waiting for an operation to complete. i.e restart, disable, switch reset etc.'),
+    ('ERROR_EUICC_MISSING', 10006, 'eUICC is missing or defective on the device.'),
+    ('ERROR_UNSUPPORTED_VERSION', 10007, 'The eUICC card(hardware) version is incompatible with the software'),
     ('ERROR_SIM_MISSING', 10008, 'No SIM card is available in the device.'),
-    (
-      'ERROR_INSTALL_PROFILE',
-      10009,
-      '''
+    ('ERROR_INSTALL_PROFILE', 10009, '''
             Failure to load the profile onto the eUICC card. e.g
               1. iccid of the profile already exists on the eUICC.
               2. GSMA(.22 v2.2) Profile Install Result - installFailedDueToDataMismatch
               3. operation was interrupted
               4. SIMalliance error in PEStatus(SGP.22 v2.2 section 2.5.6.1)'''
     ),
-    (
-      'ERROR_DISALLOWED_BY_PPR',
-      10010,
-      'Failed to load profile onto eUICC due to Profile Policy Rules.'
-    ),
-    (
-      'ERROR_ADDRESS_MISSING',
-      10011,
-      'Address is missing e.g SMDS/SMDP address is missing.'
-    ),
-    (
-      'ERROR_CERTIFICATE_ERROR',
-      10012,
-      'Certificate needed for authentication is not valid or missing. E.g  SMDP/SMDS authentication failed.'
-    ),
+    ('ERROR_DISALLOWED_BY_PPR', 10010, 'Failed to load profile onto eUICC due to Profile Policy Rules.'),
+    ('ERROR_ADDRESS_MISSING', 10011, 'Address is missing e.g SMDS/SMDP address is missing.'),
+    ('ERROR_CERTIFICATE_ERROR', 10012, 'Certificate needed for authentication is not valid or missing. E.g  SMDP/SMDS authentication failed.'),
     ('ERROR_NO_PROFILES_AVAILABLE', 10013, 'No profiles available.'),
     ('ERROR_CONNECTION_ERROR', 10014, 'Failure to create a connection.'),
-    (
-      'ERROR_INVALID_RESPONSE',
-      10015,
-      'Response format is invalid. e.g SMDP/SMDS response contains invalid json, header or/and ASN1.'
-    ),
-    (
-      'ERROR_OPERATION_BUSY',
-      10016,
-      'The operation is currently busy, try again later.'
-    ),
-    (
-      'ERROR_INVALID_PORT',
-      10017,
-      'Failure due to target port is not supported.'
-    ),
+    ('ERROR_INVALID_RESPONSE', 10015, 'Response format is invalid. e.g SMDP/SMDS response contains invalid json, header or/and ASN1.'),
+    ('ERROR_OPERATION_BUSY', 10016, 'The operation is currently busy, try again later.'),
+    ('ERROR_INVALID_PORT', 10017, 'Failure due to target port is not supported.'),
   ];
 }
 
@@ -341,6 +266,7 @@ const reasonCodeMap = {
 };
 
 const specMap = [
+  ('8.1', '4.8', 'Insufficient Memory'),
   ('8.1.1', '2.2', 'Indicates that the EID is missing in the context of this order (SM-DS address provided or MatchingID value has zero-length).'),
   ('8.1.1', '3.9', 'Indicates that the eUICC, identified by this EID is unknown to the SM-DP+.'),
   ('8.1.1', '3.10', 'Indicates that a different EID is already associated with this ICCID. (Indicates that the RPM Package is associated with different EID)'),
@@ -385,8 +311,36 @@ const specMap = [
   ('8.10.3', '4.3', 'CancelSession reason - operationAbandoned(30'),
   ('8', '4.2', 'CancelSession reason - undefinedReason(127)'),
 
-  ('8.8.5', '6.4', 'Maximum number of attempts of Profile Download has been exceeded'),
+  ('8.8.5', '4.10', 'Time to Live Expired'),
+  ('8.8.5', '6.4', 'Maximum number of attempts of Profile Download has been exceeded (Maximum number of retries for Profile download order exceeded)'),
   ('8.2.7', '6.4', 'Maximum number of incorrect attempts of Confirmation Code verification has been exceeded'),
   ('8.10.2.7', '4.2', 'Execution of at least one RPM command within an RPM package has failed'),
+
+  ('8.8.1', '3.8', 'Failed due to Invalid Server Address'),
+  ('8.8.2', '3.1', 'Failed due to Unsupported Public Key Identifiers'),
+  ('8.8.3', '3.1', 'Failed due to Unsupported Specification Version Number'),
+  ('8.8.4', '3.7', 'Failed due to Unavailable Server Auth Certificate'),
+  ('8.1', '6.1', 'Invalid eUICC Signature (Invalid Server Challenge)'),
+  ('8.2.7', '2.2', 'Missing Confirmation Code'),
+  ('8.2.7', '3.8', 'Refused Confirmation Code'),
+  ('8.1.2', '6.1', 'Invalid EUM Certificate'),
+  ('8.1.2', '6.3', 'Expired EUM Certificate'),
+  ('8.1.3', '6.1', 'Invalid eUICC Certificate'),
+  ('8.1.3', '6.3', 'Expired eUICC Certificate'),
+  ('8.11.1', '3.9', 'Unknown CI Public Key'),
+  ('8.2', '1.2', 'Profile not released'),
+  ('8.10.1', '3.9', 'Unknown Transaction ID in JSON transport layer after Authenticate Client or GetBoundProfilePackage (Unknown Transaction ID in ASN.1 euiccSigned1 payload) (Unknown Transaction ID in ASN.1 CancelSessionResponse Element after Authenticate Client or GetBoundProfilePackage)'),
+  ('8.2.6', '3.8', 'Invalid Matching ID for Profile Download Default DP+ Address Use Case (Invalid Matching ID for Profile Download Activation Code Use Case) (Invalid Matching ID for Profile Download SM-DS Use Case)'),
+  ('8.1.1', '3.8', 'Un-matched EID for Default SM-DP+ Address Use Case (Un-matched EID for SM-DS Use Case) (Un-matched EID for Activation Code Use Case)'),
+  ('8.2.5', '4.3', 'No Eligible Profile'),
+  ('8.8.5', '4.10', 'Download Order Expired'),
+  ('8.8.5', '6.4', 'Maximum number of retries for Profile download order exceeded'),
+  ('8.2.6', '3.8', 'Invalid MatchingId for Activation Code Use Case not associated to EID'),
+  ('8.1', '6.1', 'Invalid eUICC Signature after Authenticate Client or GetBoundProfilePackage (Invalid Server Challenge)'),
+  ('8.8', '3.10', 'Invalid OID after Authenticate Client or GetBoundProfilePackage'),
+  ('8.9.5', '3.3', 'Event Record Already Exists without Event Forwarding (Event Record Already Exists on Alternative SM-DS)'),
+  ('8.9', '5.1', 'SM-DS registration failed, Root SM-DS unavailable (Cascaded Event Deletion failed, Root SM-DS Unavailable)'),
+  ('8.9', '4.2', 'SM-DS registration failed, Root SM-DS error (Cascaded Event Deletion failed, Root SM-DS execution error)'),
+  ('8.9.5', '3.9', 'Event Record Does Not Exist (Event Record Does Not Match OID)'),
 ];
 

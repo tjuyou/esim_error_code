@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../widgets/y_widgets.dart';
 import 'home_controller.dart';
 
 ///CreateDate: 2025/2/19 16:20
@@ -42,23 +43,18 @@ class HomePage extends GetView<HomeController> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: TextField(
-                    controller: controller.decodeTextEditingController,
-                    keyboardType: TextInputType.number,
+                  child: _buildInputWidget(
+                    controller.decodeTextEditingController,
+                    '请输入错误码',
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                     ],
-                    decoration: const InputDecoration(
-                      hintText: '输入错误码',
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
                   ),
                 ),
                 const SizedBox(width: 10),
                 // 搜索按钮
-                ElevatedButton(
+                YButton(
+                  label: '解析',
                   onPressed: () {
                     Get.toNamed(
                       AppRoutes.decode,
@@ -67,30 +63,52 @@ class HomePage extends GetView<HomeController> {
                       },
                     );
                   },
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(AppColors.primary),
-                    shape: WidgetStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    )),
-                    elevation: WidgetStateProperty.all(4),
-                  ),
-                  child: Container(
-                    width: 80,
-                    height: 45,
-                    alignment: Alignment.center,
-                    child: const Text(
-                      '解析',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),
+            const SizedBox(height: 20),
+            Container(
+              width: 550,
+              // color: Colors.red,
+              padding: const EdgeInsets.only(left: 10, right: 150),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // TextButton(
+                  //   onPressed: () {},
+                  //   child: const Text('根据错误码查询→'),
+                  // ),
+                  const SizedBox(width: 0),
+                  TextButton(
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.decode);
+                    },
+                    child: const Text('查看详细错误码→'),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+
+  TextField _buildInputWidget(
+    TextEditingController? textController,
+    String hint, {
+    TextInputType? keyboardType = TextInputType.number,
+    List<TextInputFormatter>? inputFormatters,
+  }) {
+    return TextField(
+      controller: textController,
+      keyboardType: keyboardType,
+      inputFormatters: inputFormatters,
+      decoration: InputDecoration(
+        hintText: hint,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        hintStyle: const TextStyle(color: Colors.grey),
       ),
     );
   }
