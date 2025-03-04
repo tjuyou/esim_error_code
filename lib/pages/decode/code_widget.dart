@@ -1,91 +1,137 @@
-import 'package:esim_error_code/res/app_colors.dart';
 import 'package:flutter/material.dart';
 
-///CreateDate: 2025/2/19 18:01
+import '../../code/error_code.dart';
+import 'code_item_widget.dart';
+
+///CreateDate: 2025/3/3 15:15
 ///Author: you
 ///Description:
 
 class CodeWidget extends StatefulWidget {
   const CodeWidget({
     super.key,
-    this.codeName,
-    required this.code,
-    required this.codeDesc,
+    this.showOperation = true,
+    this.showError = true,
+    this.showSubject = true,
+    this.showReason = true,
   });
 
-  final String? codeName;
-  final String code;
-  final String codeDesc;
+  final bool showOperation;
+  final bool showError;
+  final bool showSubject;
+  final bool showReason;
 
   @override
   State<CodeWidget> createState() => _CodeWidgetState();
 }
 
 class _CodeWidgetState extends State<CodeWidget> {
-  Color? _color;
+  late final ScrollController _operationCodeController;
+  late final ScrollController _errorCodeController;
+  late final ScrollController _subjectCodeController;
+  late final ScrollController _reasonCodeController;
+
+  @override
+  void initState() {
+    _operationCodeController = ScrollController();
+    _errorCodeController = ScrollController();
+    _subjectCodeController = ScrollController();
+    _reasonCodeController = ScrollController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _operationCodeController.dispose();
+    _errorCodeController.dispose();
+    _subjectCodeController.dispose();
+    _reasonCodeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (event) {
-        setState(() {
-          _color = Colors.black.withValues(alpha: 0.1); // 鼠标进入时改变颜色
-        });
-      },
-      onExit: (event) {
-        setState(() {
-          _color = null;
-        });
-      },
-      child: Container(
-        constraints: const BoxConstraints(minHeight: 40),
-        padding: EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: widget.codeName == null ? 0 : 5,
-        ),
-        color: _color,
-        alignment: Alignment.centerLeft,
-        child: Flex(
-          direction: widget.codeName == null ? Axis.horizontal : Axis.vertical,
-          crossAxisAlignment: widget.codeName == null
-              ? CrossAxisAlignment.center
-              : CrossAxisAlignment.start,
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(minWidth: 60),
-              child: Text.rich(
-                TextSpan(
-                  text: widget.codeName,
-                  style: const TextStyle(
-                    color: AppColors.gray,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  children: [
-                    if (widget.codeName != null)
-                      const WidgetSpan(
-                        child: SizedBox(
-                          width: 10,
-                        ),
-                      ),
-                    TextSpan(
-                      text: widget.code,
-                      style: const TextStyle(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      spacing: 10,
+      children: [
+        if (widget.showOperation)
+          Flexible(
+            child: Scrollbar(
+              thumbVisibility: true,
+              controller: _operationCodeController,
+              child: ListView.builder(
+                controller: _operationCodeController,
+                itemCount: OperationCode.codeList.length,
+                itemBuilder: (BuildContext context, index) {
+                  final codeInfo = OperationCode.codeList[index];
+                  return CodeItemWidget(
+                    codeName: codeInfo.$1,
+                    code: codeInfo.$2.toString(),
+                    codeDesc: codeInfo.$3,
+                  );
+                },
+              ),
+            ),
+          ),
+        if (widget.showError)
+          Flexible(
+            child: Card(
+              child: Scrollbar(
+                thumbVisibility: true,
+                controller: _errorCodeController,
+                child: ListView.builder(
+                  controller: _errorCodeController,
+                  itemCount: ErrorCode.codeInfoList.length,
+                  itemBuilder: (context, index) {
+                    final codeInfo = ErrorCode.codeInfoList[index];
+                    return CodeItemWidget(
+                      codeName: codeInfo.$1,
+                      code: codeInfo.$2.toString(),
+                      codeDesc: codeInfo.$3,
+                    );
+                  },
                 ),
               ),
             ),
-            SelectableText(
-              widget.codeDesc,
-              style: const TextStyle(color: AppColors.primarySecondary),
+          ),
+        if (widget.showSubject)
+          Flexible(
+            child: Scrollbar(
+              thumbVisibility: true,
+              controller: _subjectCodeController,
+              child: ListView.builder(
+                controller: _subjectCodeController,
+                itemCount: subjectCodeMap.length,
+                itemBuilder: (context, index) {
+                  final entry = subjectCodeMap.entries.elementAt(index);
+                  return CodeItemWidget(
+                    code: entry.key,
+                    codeDesc: entry.value,
+                  );
+                },
+              ),
             ),
-          ],
-        ),
-      ),
+          ),
+        if (widget.showReason)
+          Flexible(
+            child: Scrollbar(
+              thumbVisibility: true,
+              controller: _reasonCodeController,
+              child: ListView.builder(
+                controller: _reasonCodeController,
+                itemCount: reasonCodeMap.length,
+                itemBuilder: (context, index) {
+                  final entry = reasonCodeMap.entries.elementAt(index);
+                  return CodeItemWidget(
+                    code: entry.key,
+                    codeDesc: entry.value,
+                  );
+                },
+              ),
+            ),
+          ),
+      ],
     );
   }
 }

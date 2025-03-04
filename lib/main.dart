@@ -76,8 +76,7 @@ class MyApp extends StatelessWidget {
             inputDecorationTheme: const InputDecorationTheme(
               filled: true,
               fillColor: Colors.white,
-              contentPadding:
-              EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+              contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
               errorStyle: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
@@ -107,7 +106,11 @@ class MyApp extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(60)),
                 borderSide: BorderSide(color: AppColors.primary, width: 2),
               ),
-            )
+            ),
+            textSelectionTheme: TextSelectionThemeData(
+              cursorColor: AppColors.primary,
+              selectionColor: AppColors.selection.withValues(alpha: 0.3),
+            ),
           ),
           child: child!,
         );
