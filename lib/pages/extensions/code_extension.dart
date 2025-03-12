@@ -19,3 +19,9 @@ extension CodeExtension on List<(String, String, String)> {
     });
   }
 }
+
+extension LetExtension<T> on T {
+  R let<R>(R Function(T value) block) {
+    return block(this);
+  }
+}

@@ -1,4 +1,6 @@
+import 'package:esim_error_code/pages/extensions/code_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 import '../../code/error_code.dart';
@@ -68,6 +70,12 @@ class SubjectReasonDataSource extends DataGridSource {
         }
         return a.$2.compareTo(b.$2);
       });
+    if (subjectCode != null && reasonCode != null) {
+      specMap
+          .firstWhereOrNull((e) => e.$1 == subjectCode && e.$2 == reasonCode)
+          ?.let((it) => list.insert(0, it));
+    }
+
     _subjectData = list
         .map<DataGridRow>(
           (e) => DataGridRow(
