@@ -24,7 +24,7 @@ class HomePage extends GetView<HomeController> {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
-              'eSIM错误码查询工具',
+              'eSIM错误码查询助手',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

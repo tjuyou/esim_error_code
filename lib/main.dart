@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'eSIM Manager',
+      title: 'eSIM错误码查询助手',
       localizationsDelegates: const [
         S.delegate,
         ...GlobalMaterialLocalizations.delegates,
