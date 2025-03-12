@@ -19,13 +19,14 @@ class SubjectReasonPage extends GetView<SubjectReasonController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 20,
-            horizontal: 25,
-          ),
-          child: GetBuilder<SubjectReasonController>(
-              id: 'subject_reason',
-              builder: (logic) {
+        padding: const EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: 25,
+        ),
+        child: GetBuilder<SubjectReasonController>(
+            id: 'subject_reason',
+            builder: (logic) {
+              if (!context.isPhone) {
                 return Column(
                   children: [
                     Row(
@@ -52,10 +53,11 @@ class SubjectReasonPage extends GetView<SubjectReasonController> {
                           child: SelectableText(
                             specMap
                                     .getDesc(
-                                        controller
-                                            .subjectTextEditingController.text,
-                                        controller
-                                            .reasonTextEditingController.text)
+                                      controller
+                                          .subjectTextEditingController.text,
+                                      controller
+                                          .reasonTextEditingController.text,
+                                    )
                                     ?.$3 ??
                                 '',
                             maxLines: 2,
@@ -79,7 +81,46 @@ class SubjectReasonPage extends GetView<SubjectReasonController> {
                     ),
                   ],
                 );
-              })),
+              } else {
+                final dataList = getDataList();
+                return ListView.builder(
+                  itemCount: dataList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final data = dataList[index];
+                    return ListTile(
+                      title: Text.rich(
+                        TextSpan(
+                          text: 'subjectCode: ',
+                          style: _titleStyle,
+                          children: [
+                            TextSpan(
+                              text: data.$1,
+                              style: _codeStyle,
+                            ),
+                            const TextSpan(
+                              text: '   reasonCode: ',
+                              style: _titleStyle,
+                            ),
+                            TextSpan(
+                              text: data.$2,
+                              style: _codeStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                      subtitle: SelectableText(
+                        data.$3,
+                        style: const TextStyle(
+                          color: AppColors.content,
+                          fontSize: 15,
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }
+            }),
+      ),
     );
   }
 
@@ -102,4 +143,25 @@ class SubjectReasonPage extends GetView<SubjectReasonController> {
       ),
     );
   }
+
+  List<(String, String, String)> getDataList() {
+    return List.generate(specMap.length, (i) => specMap[i])
+      ..sort((a, b) {
+        final compare = a.$1.compareTo(b.$1);
+        if (compare != 0) {
+          return compare;
+        }
+        return a.$2.compareTo(b.$2);
+      });
+  }
 }
+
+const _titleStyle = TextStyle(
+  color: AppColors.primarySecondary,
+  fontSize: 16,
+);
+const _codeStyle = TextStyle(
+  color: AppColors.primary,
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+);
