@@ -42399,7 +42399,7 @@ p=B.bZ.h(0,s)
 if(q===(p==null?s:p))return!0}return!1}}
 A.Q3.prototype={
 M(a){var s=$.aOS(),r=$.aOT()
-return new A.zl("/",new A.ahO(),"eSIM Manager",B.Sy,new A.ahP(),B.tA,A.aDx(new A.ahQ(),t.Cd),s,r,null)}}
+return new A.zl("/",new A.ahO(),"eSIM\u9519\u8bef\u7801\u67e5\u8be2\u52a9\u624b",B.Sy,new A.ahP(),B.tA,A.aDx(new A.ahQ(),t.Cd),s,r,null)}}
 A.ahP.prototype={
 $2(a,b){var s,r,q
 if(a!=null){s=a.gda()!=="en"&&a.gda()!=="zh"&&a.gda()!=="es"&&a.gda()!=="ru"
@@ -107426,7 +107426,7 @@ B.aaX=new A.n(!0,B.l,null,"Roboto",null,null,null,null,null,null,null,null,null,
 B.a9Y=new A.n(!0,B.l,null,"Roboto",null,null,null,null,null,null,null,null,null,null,null,null,null,B.j,null,null,null,"whiteMountainView labelSmall",null,null,null,null)
 B.abk=new A.dT(B.aab,B.a7L,B.a8E,B.aas,B.a7w,B.a7u,B.a75,B.a9V,B.aaK,B.a7x,B.a7X,B.a9K,B.a7i,B.aaX,B.a9Y)
 B.a8b=new A.n(!0,B.n,null,null,null,null,24,B.bV,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.abl=new A.qU("eSIM\u9519\u8bef\u7801\u67e5\u8be2\u5de5\u5177",null,B.a8b,null,null,null,null,null,null,null)
+B.abl=new A.qU("eSIM\u9519\u8bef\u7801\u67e5\u8be2\u52a9\u624b",null,B.a8b,null,null,null,null,null,null,null)
 B.abm=new A.qU("\u67e5\u770b\u8be6\u7ec6\u9519\u8bef\u7801\u2192",null,null,null,null,null,null,null,null,null)
 B.Hd=new A.Tq(0,"system")
 B.abn=new A.Tq(2,"dark")
