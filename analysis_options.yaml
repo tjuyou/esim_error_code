@@ -238,3 +238,9 @@ analyzer:
     - "**/*.g.dart"  # 排除代码生成的文件
 #    - "**/*.freezed.dart"  # 排除freezed生成的文件
     - "build/**"
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**

@@ -320,7 +320,7 @@ const specMap = [
   ('8.8.2', '3.1', 'Failed due to Unsupported Public Key Identifiers'),
   ('8.8.3', '3.1', 'Failed due to Unsupported Specification Version Number'),
   ('8.8.4', '3.7', 'Failed due to Unavailable Server Auth Certificate'),
-  ('8.1', '6.1', 'Invalid eUICC Signature (Invalid Server Challenge)'),
+  ('8.1', '6.1', '1.Invalid eUICC Signature \n2.Invalid Server Challenge'),
   ('8.2.7', '2.2', 'Missing Confirmation Code'),
   ('8.2.7', '3.8', 'Refused Confirmation Code'),
   ('8.1.2', '6.1', 'Invalid EUM Certificate'),

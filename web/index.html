@@ -31,6 +31,19 @@
 
   <title>esim_error_code</title>
   <link rel="manifest" href="manifest.json">
+  <script>
+    // 强制使用本地 CanvasKit，不从 CDN 拉取
+    // 方案1: 设置基础URL
+    window.flutterCanvasKitBaseUrl = "canvaskit/";
+
+    // 方案2: 配置Flutter加载器选项
+<!--    window._flutter = window._flutter || {};-->
+<!--    window._flutter.loader = window._flutter.loader || {};-->
+<!--    window._flutter.configuration = {-->
+<!--      canvasKitBaseUrl: "canvaskit/",-->
+<!--      useLocalCanvasKit: true-->
+<!--    };-->
+  </script>
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
